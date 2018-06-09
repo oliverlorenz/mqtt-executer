@@ -1,5 +1,5 @@
-FROM ubuntu:16.04
-RUN apt update && apt install -y mosquitto-clients ca-certificates jq && rm -rf /var/lib/apt/lists/*
+FROM docker:18.05.0-ce-dind
+RUN apk update && apk add jq ca-certificates mosquitto-clients bash
 WORKDIR /app
+USER root
 COPY mqtt-executer.sh /app/mqtt-executer.sh
-CMD ./mqtt-executer.sh

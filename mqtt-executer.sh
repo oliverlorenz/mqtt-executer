@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod +x command.sh
 if [ -z $(which mosquitto_sub) ]; then
   >&2 echo "error: it seems mosquitto_sub is not installed!"
   exit 1
