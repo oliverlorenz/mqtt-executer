@@ -1,21 +1,11 @@
 ## MQTT executer
 
-This is a small bash script which executes the command transfered by the mqtt payload. This script does not contain any security mechanisms. You should be aware that you have to secure the topics with the useful read and write permissions.
+Use a MQTT topic as a trigger to execute command.sh. Payload from MQTT message will be transfered as Parameter $1 in that script.
 
-## Requirements
+### Usage
 
-This script is based on `mosquitto_sub`. You have to install it before.
-
-### Ubuntu
+create a command.sh file with the command you want to run. Then run
 
 ```
-$ apt-get install mosquitto-clients
+docker run -it -v path/to/local/command.sh:command.sh oliverlorenz/mqtt-executer ./mqtt-executer.sh -h <HOST> -p <PORT> -t "<MQTT_TOPIC>" -u <USERNAME> -P <PASSWORD> --capath /etc/ssl/certs/
 ```
-
-## how to use
-
-```
-./mqtt-executer.sh -h "test.mosquitto.org" -t "my/topic"
-```
-
-If a message arrives on "my/topic" the payload should contain a bash command like "echo \"test\"". This command will be executed.
