@@ -5,5 +5,5 @@ if [ -z $(which mosquitto_sub) ]; then
   exit 1
 fi
 while IFS= read -r line ; do
-    ./command.sh "$line"
+    ./command.sh $line
 done < <(mosquitto_sub $@)
